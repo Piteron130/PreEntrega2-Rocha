@@ -1,0 +1,21 @@
+/* footer sección*/
+
+.footer_section {
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  padding: 20px;
+  font-weight: 500;
+}
+
+.footer_section p {
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
+
+.footer_section a {
+  color: rgb(247, 226, 250);
+}

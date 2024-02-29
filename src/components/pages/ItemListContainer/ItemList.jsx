@@ -1,18 +1,18 @@
-const ItemList = ({ items }) => {
+import { ProductCard } from "../../common/ProductCard";
+import "./ItemListContainer.css";
+const ItemList = ({ products }) => {
   return (
-    <div>
-      {items.map((item) => {
+    <div className="cards-container">
+      {products.map(({ id, img, title, description, price }) => {
         return (
-          <div style={{ border: "2px solid black" }} key={item.id}>
-            <img
-              src={item.image}
-              alt=""
-              style={{ width: "250px", marginLeft: "40%" }}
-            />
-            <h2>{item.title}</h2>
-            <h3>${item.price}</h3>
-            <p>{item.description}</p>
-          </div>
+          <ProductCard
+            key={id}
+            img={img}
+            title={title}
+            description={description}
+            price={price}
+            id={id}
+          />
         );
       })}
     </div>

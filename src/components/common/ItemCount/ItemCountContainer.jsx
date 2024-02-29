@@ -1,26 +1,33 @@
 import { useState } from "react";
 import ItemCount from "./ItemCount";
 
-const ItemCountContainer = ({ stock }) => {
+const ItemCountContainer = ({ stock, onAdd }) => {
   const [counter, setCounter] = useState(1);
 
-  const sumar = () => {
+  const addOne = () => {
     if (counter < stock) {
       setCounter(counter + 1);
     } else {
-      alert("Stock maximo");
+      alert("stock maximo");
     }
   };
 
-  const restar = () => {
+  const subOne = () => {
     if (counter > 1) {
       setCounter(counter - 1);
     } else {
-      alert("No puede ser menos de 1");
+      alert("no puede ser menos de 1");
     }
   };
 
-  return <ItemCount counter={counter} sumar={sumar} restar={restar} />;
+  return (
+    <ItemCount
+      counter={counter}
+      addOne={addOne}
+      subOne={subOne}
+      onAdd={onAdd}
+    />
+  );
 };
 
 export default ItemCountContainer;

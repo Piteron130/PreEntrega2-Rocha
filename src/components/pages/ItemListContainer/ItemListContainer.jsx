@@ -1,32 +1,47 @@
-import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
-import { products } from "../../../ProductsMock";
+import { getProducts } from "../../../productsMock";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
 
 const ItemListContainer = () => {
-  //LOGICA
-  const [items, setItems] = useState([]);
+  const { category } = useParams();
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const tarea = new Promise((resolve, reject) => {
-      resolve(products);
-      //reject ("Error")
-    });
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const resp = await getProducts();
 
-    tarea
-      .then((res) => {
-        setItems(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+        if (category) {
+          const productsFilter = resp.filter(
+            (product) => product.category === category
+          );
+          setProducts(productsFilter);
+        } else {
+          setProducts(resp);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  console.log(items);
+    fetchData();
+  }, [category]);
 
   return (
-    <>
-      <ItemList items={items} />
-    </>
+    <Box sx={{ width: "100%" }}>
+      {isLoading ? (
+        <LinearProgress color="secondary" />
+      ) : (
+        <ItemList products={products} />
+      )}
+    </Box>
   );
 };
 

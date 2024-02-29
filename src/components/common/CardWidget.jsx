@@ -1,21 +1,19 @@
-import React from "react";
+import { Badge } from "@mui/material";
+import { Link } from "react-router-dom";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-const CardWidget = () => {
+const CartWidget = () => {
+  const { cart } = useContext(CartContext);
+
   return (
-    <div>
-      <img
-        src="https://img.freepik.com/fotos-premium/carrito-compras-aislado-sobre-fondo-blanco_118019-1339.jpg"
-        alt=""
-        style={{
-          width: "100px",
-          marginLeft: "85%",
-          marginBottom: "3%",
-          marginTop: "3px",
-        }}
-      />
-      0
-    </div>
+    <Link to="/cart">
+      <Badge badgeContent={cart.length} showZero color="primary">
+        <BsFillCartCheckFill size="30px" color="beige" />
+      </Badge>
+    </Link>
   );
 };
 
-export default CardWidget;
+export default CartWidget;
