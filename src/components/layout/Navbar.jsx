@@ -10,10 +10,11 @@ export const Navbar = () => {
           ButterFly
         </Link>
         <ul className="categories">
-          <Link to="/">Remeras</Link>
+          <Link to="/category/remeras">Remeras</Link>
           <Link to="/category/musculosa">Musculosas</Link>
           <Link to="/category/buzo">Buzos</Link>
         </ul>
+        <Link to="/dashboard">Dashboard</Link>
         <CartWidget />
       </div>
     </>

@@ -13,8 +13,8 @@
   justify-content: center;
 }
 .containerImage > img {
-  width: 80%;
-  height: 350px;
+  width: 50%;
+  height: 300px;
   object-fit: cover;
 }
 
